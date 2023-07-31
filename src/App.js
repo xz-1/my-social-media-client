@@ -27,6 +27,12 @@ function App() {
   //https://youtu.be/K8YELRmUb5o?t=8283  ::?
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
+  //this is after logged in
+  //it is to verified: if the user is logged by using token
+  //    if the token is existed: it is used in line:
+  const isAuth = useSelector((state) => state.token);
+
+
   /*
   Note: this is a comment for the resutt <div> below
   I wrote it because the systax does not allow me to use <!-- -->
@@ -48,8 +54,11 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/" element={<LoginPage />}></Route>
-            <Route path="/home" element={<HomePage />}></Route>
-            <Route path="/profile/:userId" element={<ProfilePage />}></Route>
+            {/* this mean that/home and /profile is protected by authourizing the token */}
+            <Route path="/home"
+              element={isAuth ? <HomePage /> : <Navigate to="/" />}></Route>
+            <Route path="/profile/:userId"
+              element={isAuth ? <ProfilePage /> : <Navigate to="/" />}></Route>
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
