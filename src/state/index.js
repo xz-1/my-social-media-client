@@ -4,8 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 //so, it will be accessable throughtout the entire application
 const initialState = {
     mode: "light",
-    user: null,
-    token: null,
+    user: null, //"", //this do something
+    token: null, //"",
     posts: [],
 };
 
@@ -23,6 +23,7 @@ export const authSlice = createSlice({
         },
         setLogin: (state, action) => {
             //this the info from 'user' parameter from 'action' parameter/payload
+            //console.log("This is from state/index.js: " + action);
             state.user = action.payload.user;
             state.token = action.payload.token;
         },
@@ -51,11 +52,8 @@ export const authSlice = createSlice({
             });
             state.post = updatedPosts;
         },
-    }
+    },
 });
-
-
-
 
 //this is the part of Redux toolkits
 export const { setMode, setLogin, setLogOut, setFriends, setPosts, setPost } = authSlice.actions;

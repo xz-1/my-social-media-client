@@ -24,7 +24,7 @@ import {
     Close
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { setMode, setLogout } from "state";
+import { setMode, setLogOut } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
 
@@ -42,7 +42,9 @@ const NavBar = () => {
     const navigate = useNavigate();
     //grasping user information
     const user = useSelector((state) => state.user);
+    //console.log("This is from navbar/index.is: line 45: " + user);
 
+    //console.log(useSelector((state) => { console.log(state) }));
     //this a "hook" build in to Material UI:
     //that let me determine: if the current screen side:
     // < min width or > min width
@@ -61,7 +63,12 @@ const NavBar = () => {
     const primaryLight = theme.palette.primary.light;
     const alt = theme.palette.background.alt;
 
+
+    //this is where the error is:
     const fullName = `${user.firstName} ${user.lastName}`;
+    //to test Navbar
+    //const fullName = "First Last";
+
 
     //This jsx (React): <FlexBetween>: Note this is from components/FlexBetween.js
     //https://youtu.be/K8YELRmUb5o?t=8901
@@ -167,7 +174,7 @@ const NavBar = () => {
                                 {fullName}
                             </Typography>
                         </MenuItem>
-                        <MenuItem onClick={() => dispatch(setLogout())}>
+                        <MenuItem onClick={() => dispatch(setLogOut())}>
                             Log Out
                         </MenuItem>
                     </Select>
@@ -241,7 +248,7 @@ const NavBar = () => {
                                     {fullName}
                                 </Typography>
                             </MenuItem>
-                            <MenuItem onClick={() => dispatch(setLogout())}>
+                            <MenuItem onClick={() => dispatch(setLogOut())}>
                                 Log Out
                             </MenuItem>
                         </Select>

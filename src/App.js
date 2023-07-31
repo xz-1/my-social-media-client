@@ -40,6 +40,7 @@ function App() {
   -->
   */
 
+  //this is where React interact with Browser
   return (
     <div className="app">
       <BrowserRouter>
